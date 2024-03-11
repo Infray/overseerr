@@ -41,52 +41,7 @@ const StatusChecker = () => {
     return null;
   }
 
-  return (
-    <Transition
-      as={Fragment}
-      enter="transition-opacity duration-300"
-      enterFrom="opacity-0"
-      enterTo="opacity-100"
-      leave="transition-opacity duration-300"
-      leaveFrom="opacity-100"
-      leaveTo="opacity-0"
-      appear
-      show={
-        !alertDismissed &&
-        ((hasPermission(Permission.ADMIN) && data.restartRequired) ||
-          data.commitTag !== process.env.commitTag)
-      }
-    >
-      {hasPermission(Permission.ADMIN) && data.restartRequired ? (
-        <Modal
-          title={intl.formatMessage(messages.restartRequired)}
-          backgroundClickable={false}
-          onOk={() => {
-            setAlertDismissed(true);
-            if (data.commitTag !== process.env.commitTag) {
-              location.reload();
-            }
-          }}
-          okText={intl.formatMessage(globalMessages.close)}
-        >
-          {intl.formatMessage(messages.restartRequiredDescription)}
-        </Modal>
-      ) : (
-        <Modal
-          title={intl.formatMessage(messages.appUpdated, {
-            applicationTitle: settings.currentSettings.applicationTitle,
-          })}
-          onOk={() => location.reload()}
-          okText={intl.formatMessage(messages.reloadApp, {
-            applicationTitle: settings.currentSettings.applicationTitle,
-          })}
-          backgroundClickable={false}
-        >
-          {intl.formatMessage(messages.appUpdatedDescription)}
-        </Modal>
-      )}
-    </Transition>
-  );
+  return null;
 };
 
 export default StatusChecker;
